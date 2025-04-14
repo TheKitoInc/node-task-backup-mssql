@@ -30,8 +30,7 @@ const config = {
 
 async function getConnection() {
   try {
-    const pool = await mssql.connect(config);
-    console.log("Connected to MSSQL database.");
+    const pool = await mssql.connect(config);    
     return pool;
   } catch (err) {
     throw err;
@@ -76,8 +75,13 @@ async function getDatabases(connection) {
 async function main() {
   try {
     const connection = await getConnection();
+    console.log("Connected to MSSQL database.");
+
     const backupDirectory = await getBackupDirectory(connection);
+    console.log("Backup directory:", backupDirectory);
+
     const databases = await getDatabases(connection);
+    console.log("Databases:", databases);
 
     for (const database of databases) {
       const timestamp = new Date()
@@ -99,6 +103,7 @@ async function main() {
     }
 
     await connection.close();
+    console.log("Connection closed.");
   } catch (err) {
     console.error("Error in backup process:", err);
   }
