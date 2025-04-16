@@ -17,10 +17,10 @@ const queryBackupDatabase = (database, pathFile) =>
 
 
 const config = {
-  user: process.env.MSSQL_USER || "sa",
-  password: process.env.MSSQL_PASSWORD || "",
-  server: process.env.MSSQL_HOST || "localhost",
-  port: Number(process.env.MSSQL_PORT || 1433),
+  user: argv.MSSQL_USER,
+  password: argv.MSSQL_PASSWORD,
+  server: argv.MSSQL_HOST,
+  port: argv.MSSQL_PORT,
   options: {
     encrypt: false,
     trustServerCertificate: true,
