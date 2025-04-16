@@ -1,3 +1,4 @@
+require("dotenv").config();
 const mssql = require("mssql");
 
 const queryShowDataBases =
@@ -14,7 +15,6 @@ const queryGetBackupDirectory = `DECLARE @BackupDirectory NVARCHAR(512);
 const queryBackupDatabase = (database, pathFile) =>
   `BACKUP DATABASE [${database}] TO DISK='${pathFile}' WITH FORMAT, INIT, SKIP, NOREWIND, NOUNLOAD, STATS=10`;
 
-require("dotenv").config();
 
 const config = {
   user: process.env.MSSQL_USER || "sa",
