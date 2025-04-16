@@ -19,7 +19,7 @@ require("dotenv").config();
 const config = {
   user: process.env.MSSQL_USER || "sa",
   password: process.env.MSSQL_PASSWORD || "",
-  server: process.env.MSSQL_SERVER || "localhost",
+  server: process.env.MSSQL_HOST || "localhost",
   port: Number(process.env.MSSQL_PORT || 1433),
   options: {
     encrypt: false,
@@ -49,7 +49,7 @@ async function query(connection, query) {
 
 
 async function getBackupDirectory(connection) {
-  return process.env.PATH_BACKUP || getServerBackupDirectory(connection);  
+  return process.env.MSSQL_DIRECTORY || getServerBackupDirectory(connection);  
 }
 
 async function getServerBackupDirectory(connection) {
