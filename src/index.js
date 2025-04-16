@@ -21,7 +21,7 @@ const argv = yargs
   .option('MSSQL_USER', {
     describe: 'MSSQL username',
     type: 'string',
-    demandOption: false,
+    demandOption: true,
     default: process.env.MSSQL_USER,
   })
   .option('MSSQL_PASSWORD', {
