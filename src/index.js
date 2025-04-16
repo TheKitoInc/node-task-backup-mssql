@@ -17,6 +17,46 @@ const queryGetBackupDirectory = `DECLARE @BackupDirectory NVARCHAR(512);
 const queryBackupDatabase = (database, pathFile) =>
   `BACKUP DATABASE [${database}] TO DISK='${pathFile}' WITH FORMAT, INIT, SKIP, NOREWIND, NOUNLOAD, STATS=10`;
 
+const argv = yargs
+  .option('MSSQL_USER', {
+    describe: 'MSSQL username',
+    type: 'string',
+    demandOption: false,
+    default: process.env.MSSQL_USER,
+  })
+  .option('MSSQL_PASSWORD', {
+    describe: 'MSSQL password',
+    type: 'string',
+    demandOption: false,
+    default: process.env.MSSQL_PASSWORD,
+  })
+  .option('MSSQL_HOST', {
+    describe: 'MSSQL host',
+    type: 'string',
+    default: process.env.MSSQL_HOST || 'localhost',
+  })
+  .option('MSSQL_PORT', {
+    describe: 'MSSQL port',
+    type: 'number',
+    default: Number(process.env.MSSQL_PORT) || 1433,
+  })
+  .option('MSSQL_DIRECTORY', {
+    describe: 'Backup directory',
+    type: 'string',
+    default: process.env.MSSQL_DIRECTORY || null,
+  })
+  .help()
+  .argv;
+
+// Use the parsed options
+console.log('MSSQL Config:');
+console.log({
+  user: argv.MSSQL_USER,
+  host: argv.MSSQL_HOST,
+  port: argv.MSSQL_PORT,
+  directory: argv.MSSQL_DIRECTORY,
+});
+
 
 const config = {
   user: argv.MSSQL_USER,
