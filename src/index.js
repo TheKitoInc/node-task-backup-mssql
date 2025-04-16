@@ -47,7 +47,12 @@ async function query(connection, query) {
   }
 }
 
+
 async function getBackupDirectory(connection) {
+  return process.env.PATH_BACKUP || await getServerBackupDirectory(connection);  
+}
+
+async function getServerBackupDirectory(connection) {
   try {
     const result = await query(connection, queryGetBackupDirectory);
     if (result.length === 0) {
