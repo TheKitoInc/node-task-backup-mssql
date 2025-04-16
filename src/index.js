@@ -1,5 +1,7 @@
 require("dotenv").config();
+
 const mssql = require("mssql");
+const yargs = require('yargs');
 
 const queryShowDataBases =
   "SELECT name FROM sys.databases WHERE state_desc = 'ONLINE' AND name NOT IN ('master', 'tempdb', 'model', 'msdb')";
