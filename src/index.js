@@ -49,7 +49,7 @@ async function query(connection, query) {
 
 
 async function getBackupDirectory(connection) {
-  return process.env.PATH_BACKUP || await getServerBackupDirectory(connection);  
+  return process.env.PATH_BACKUP || getServerBackupDirectory(connection);  
 }
 
 async function getServerBackupDirectory(connection) {
