@@ -1,0 +1,30 @@
+{
+  "name": "task-backup-mssql",
+  "version": "1.0.0",
+  "description": "node-task-backup-mssql",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "ncc build src/index.js --minify",
+    "dev": "ncc run src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheKitoInc/node-task-backup-mssql.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/TheKitoInc/node-task-backup-mssql/issues"
+  },
+  "homepage": "https://github.com/TheKitoInc/node-task-backup-mssql#readme",
+  "devDependencies": {
+    "@vercel/ncc": "^0.38.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "mssql": "^11.0.1"
+  }
+}
