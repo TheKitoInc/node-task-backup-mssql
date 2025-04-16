@@ -1,17 +1,13 @@
-name: gh-action-continuous-integration-lynt
+name: gh-action-continuous-integration-linter-lynt
 on: [push, pull_request]
 
 jobs:
-  linter:
-    name: CI-Linter
-
+  gh-action-continuous-integration-linter-lynt:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup
         uses: actions/setup-node@v4
@@ -21,10 +17,10 @@ jobs:
       - name: Install
         run: npm install -g lynt@latest
 
-      - name: Linter
-        run: npx lynt
+      - name: Run
+        run: lynt --fix --all --ignore-path .lyntignore --config .lynt.json --verbose
 
-      - name: Commit changes
+      - name: Commit
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
