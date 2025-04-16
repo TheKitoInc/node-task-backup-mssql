@@ -1,0 +1,33 @@
+name: gh-action-continuous-integration-lynt
+on: [push, pull_request]
+
+jobs:
+  linter:
+    name: CI-Linter
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+
+      - name: Install
+        run: npm install -g lynt@latest
+
+      - name: Linter
+        run: npx lynt
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Apply linter fixes"
+          git push
