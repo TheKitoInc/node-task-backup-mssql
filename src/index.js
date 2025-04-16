@@ -49,7 +49,7 @@ async function query(connection, query) {
 
 
 async function getBackupDirectory(connection) {
-  return process.env.MSSQL_DIRECTORY || getServerBackupDirectory(connection);  
+  return argv.MSSQL_DIRECTORY|| getServerBackupDirectory(connection);  
 }
 
 async function getServerBackupDirectory(connection) {
